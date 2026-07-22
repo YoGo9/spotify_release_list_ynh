@@ -1,0 +1,58 @@
+packaging_format = 2
+
+id = "spotify_release_list"
+name = "Spotify Release List"
+description.en = "Display list of Spotify releases from artists you follow"
+description.fr = "Affiche la liste des sorties Spotify des artistes que vous suivez"
+
+version = "3.8.0~ynh1"
+
+maintainers = []
+
+[upstream]
+license = "ISC"
+website = "https://spotifyreleaselist.netlify.app"
+demo = "https://demo--spotifyreleaselist.netlify.app"
+admindoc = "https://github.com/jakubito/spotify-release-list"
+code = "https://github.com/jakubito/spotify-release-list"
+
+[integration]
+yunohost = ">= 11.2"
+architectures = "all"
+multi_instance = true
+ldap = false
+sso = false
+disk = "600M"
+ram.build = "700M"
+ram.runtime = "20M"
+
+[install]
+    [install.domain]
+    type = "domain"
+
+    [install.path]
+    type = "path"
+    default = "/releases"
+
+    [install.spotify_client_id]
+    ask.en = "What is your Spotify app's Client ID? (create one at developer.spotify.com/dashboard)"
+    ask.fr = "Quel est le Client ID de votre application Spotify ? (à créer sur developer.spotify.com/dashboard)"
+    type = "string"
+
+    [install.init_main_permission]
+    type = "group"
+    default = "visitors"
+
+[resources]
+    [resources.sources.main]
+    url = "https://github.com/jakubito/spotify-release-list/archive/refs/tags/v3.8.0.tar.gz"
+    sha256 = "a522e1a61c7eecd56cb911b5d27e31975cee1e2d5345034cf7bc54b63b12588f"
+    autoupdate.strategy = "latest_github_tag"
+    autoupdate.upstream_url = "https://github.com/jakubito/spotify-release-list"
+
+    [resources.system_user]
+
+    [resources.install_dir]
+
+    [resources.permissions]
+    main.url = "/"

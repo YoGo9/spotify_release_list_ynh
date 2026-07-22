@@ -1,0 +1,1 @@
+Spotify Release List displays new releases from the artists you follow on Spotify, day by day, with filtering and CSV/playlist export. All data is stored client-side (in the visitor's browser); this package only hosts the static web app itself.

@@ -1,0 +1,34 @@
+#!/bin/bash
+
+source _common.sh
+source /usr/share/yunohost/helpers
+
+#=================================================
+# RESTORE THE APP MAIN DIR
+#=================================================
+ynh_script_progression --message="Restoring the app main directory..." --weight=1
+
+ynh_restore_file --origin_path="$install_dir"
+
+chmod 750 "$install_dir"
+chmod -R o-rwx "$install_dir"
+chown -R "$app:www-data" "$install_dir"
+
+#=================================================
+# RESTORE THE NGINX CONFIGURATION
+#=================================================
+ynh_script_progression --message="Restoring NGINX web server configuration..." --weight=1
+
+ynh_restore_file --origin_path="/etc/nginx/conf.d/$domain.d/$app.conf"
+
+#=================================================
+# GENERIC FINALIZATION
+#=================================================
+ynh_script_progression --message="Reloading NGINX web server..." --weight=1
+
+systemctl reload nginx
+
+#=================================================
+# END OF SCRIPT
+#=================================================
+ynh_script_progression --message="Restoration completed for $app" --last

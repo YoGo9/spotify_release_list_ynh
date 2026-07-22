@@ -1,0 +1,46 @@
+#!/bin/bash
+
+source _common.sh
+source /usr/share/yunohost/helpers
+
+#=================================================
+# ENSURE DERIVED SETTINGS
+#=================================================
+
+path_url=${path%/}
+ynh_app_setting_set --app=$app --key=path_url --value="$path_url"
+
+#=================================================
+# INSTALL NODEJS
+#=================================================
+ynh_script_progression --message="Making sure NodeJS is installed..." --weight=30
+
+ynh_install_nodejs --nodejs_version=$nodejs_version
+
+#=================================================
+# REBUILD THE APP
+#=================================================
+ynh_script_progression --message="Rebuilding the app... (this can take a few minutes)" --weight=60
+
+myynh_build_app
+
+#=================================================
+# SECURE FILES AND DIRECTORIES
+#=================================================
+ynh_script_progression --message="Securing files and directories..." --weight=1
+
+chmod 750 "$install_dir"
+chmod -R o-rwx "$install_dir"
+chown -R "$app:www-data" "$install_dir"
+
+#=================================================
+# NGINX CONFIGURATION
+#=================================================
+ynh_script_progression --message="Configuring NGINX web server..." --weight=1
+
+ynh_add_nginx_config
+
+#=================================================
+# END OF SCRIPT
+#=================================================
+ynh_script_progression --message="Upgrade of $app completed" --last
