@@ -13,14 +13,11 @@ Display list of Spotify releases from artists you follow
 
 **Shipped version:** 3.8.0~ynh1
 
-**Demo:** https://demo--spotifyreleaselist.netlify.app
-
 ## Documentation and resources
 
 * Official app website: <https://spotifyreleaselist.netlify.app>
 * Official admin documentation: <https://github.com/jakubito/spotify-release-list>
 * Upstream app code repository: <https://github.com/jakubito/spotify-release-list>
-* YunoHost documentation for this app: <https://yunohost.org/app_spotify_release_list>
 * Report a bug: <https://github.com/YoGo9/spotify_release_list_ynh/issues>
 
 ## Developer info
