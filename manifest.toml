@@ -47,6 +47,7 @@ ram.runtime = "20M"
     [resources.sources.main]
     url = "https://github.com/jakubito/spotify-release-list/archive/refs/tags/v3.8.0.tar.gz"
     sha256 = "a522e1a61c7eecd56cb911b5d27e31975cee1e2d5345034cf7bc54b63b12588f"
+    in_subdir = true
     autoupdate.strategy = "latest_github_tag"
     autoupdate.upstream_url = "https://github.com/jakubito/spotify-release-list"
 
